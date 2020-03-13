@@ -4,15 +4,25 @@ class Counter extends Component {
   state = {
     count: 0
   };
-  hanldeIncrement() {
-      console.log('Incrementing!', this);
+  constructor() {
+    super();
+    console.log(this);
+    this.handleIncrement = this.handleIncrement.bind(this);
+  }
+  handleIncrement() {
+    console.log("Incrementing!", this);
   }
   render() {
     let classes = this.getCountClass();
     return (
       <div>
         <span className={classes}>{this.formatCount()}</span>
-        <button onClick={this.hanldeIncrement} className="btn btn-secondary  btn-sm">Increment</button>
+        <button
+          onClick={this.handleIncrement}
+          className="btn btn-secondary  btn-sm"
+        >
+          Increment
+        </button>
       </div>
     );
   }
