@@ -5,7 +5,7 @@ class Counter extends Component {
     count: 0
   };
   hanldeIncrement() {
-      console.log('Incrementing!')
+      console.log('Incrementing!', this);
   }
   render() {
     let classes = this.getCountClass();
