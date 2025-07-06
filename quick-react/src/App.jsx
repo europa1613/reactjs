@@ -6,6 +6,10 @@ function App() {
         <>
             <h1>Quick React</h1>
             <Counter />
+            <Counter />
+            <Counter />
+            <Counter />
+            <Counter />
         </>
     );
 }
