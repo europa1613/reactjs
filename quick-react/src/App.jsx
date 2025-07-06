@@ -6,7 +6,9 @@ function App() {
         <>
             <h1>Quick React</h1>
             <Counter label="Counter 1" />
-            <Counter label="Counter 2" />
+            <Counter label="Counter 2" >
+                <p>This is a child element inside Counter 2</p>
+            </Counter>
             <Counter label="Counter 3" />
         </>
     );

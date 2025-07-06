@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-function Counter({label, ...props}) {    
+function Counter({label, children, ...props}) {    
     const [count, setCount] = useState(0);
 
     console.log("Counter component rendered with props:", props);
+
 
     const handleClick = (event) => {
         console.log("**----------------------**");
@@ -31,6 +32,7 @@ function Counter({label, ...props}) {
         <article className="card">
             <h2>{label}</h2>
             <button onClick={handleClick}>count is {count}</button>
+            {children}
         </article>
     );
 }
