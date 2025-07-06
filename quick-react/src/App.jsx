@@ -5,11 +5,9 @@ function App() {
     return (
         <>
             <h1>Quick React</h1>
-            <Counter />
-            <Counter />
-            <Counter />
-            <Counter />
-            <Counter />
+            <Counter label="Counter 1" />
+            <Counter label="Counter 2" />
+            <Counter label="Counter 3" />
         </>
     );
 }

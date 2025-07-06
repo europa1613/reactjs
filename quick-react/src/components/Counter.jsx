@@ -1,7 +1,9 @@
 import { useState } from "react";
 
-function Counter() {    
+function Counter(props) {    
     const [count, setCount] = useState(0);
+
+    console.log("Counter component rendered with props:", props);
 
     const handleClick = (event) => {
         console.log("**----------------------**");
