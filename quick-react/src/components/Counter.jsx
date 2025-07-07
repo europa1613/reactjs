@@ -1,37 +1,50 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 
-function Counter({label, children, ...props}) {    
+// Simple reducer to track the last action and total clicks
+function historyReducer(state, action) {
+    console.log("Executing historyReducer with action: ", action);
+    console.log("Current state: ", state);
+    switch (action.type) {
+        case "INCREMENT":
+            return {
+                ...state,
+                lastAction: "incremented",
+                clickCount: state.clickCount + 1,
+            };
+        case "RESET":
+            return { ...state, lastAction: "reset" }; // clickCount stays the same!
+        default:
+            return state;
+    }
+}
+
+function Counter({ label, children }) {
     const [count, setCount] = useState(0);
+    const [history, dispatch] = useReducer(historyReducer, {
+        lastAction: "none",
+        clickCount: 0,
+    });
 
-    console.log("Counter component rendered with props:", props);
+    console.log("Executing Counter " + label);
 
-
-    const handleClick = (event) => {
-        console.log("**----------------------**");
-        console.log("React SyntheticEvent:", event);
-        console.log("Native event:", event.nativeEvent);
-        console.log("Current target (button):", event.currentTarget);
-        console.log("Event target:", event.target);
-        console.log(
-            "Native event current target (root):",
-            event.nativeEvent.currentTarget
-        );
-
-        // Show that the native event is actually attached to the root
-        const root = document.getElementById("root");
-        console.log("Root element:", root);
-        console.log(
-            "Native event attached to root?",
-            event.nativeEvent.currentTarget === root
-        );
-
+    const handleIncrement = () => {
         setCount((count) => count + 1);
+        dispatch({ type: "INCREMENT" });
+    };
+
+    const handleReset = () => {
+        setCount(0);
+        dispatch({ type: "RESET" });
     };
 
     return (
         <article className="card">
             <h2>{label}</h2>
-            <button onClick={handleClick}>count is {count}</button>
+            <button onClick={handleIncrement}>count is {count}</button>
+            &nbsp;&nbsp;
+            <button onClick={handleReset}>Reset</button>
+            <p>Last action: {history.lastAction}</p>
+            <p>Total clicks: {history.clickCount}</p>
             {children}
         </article>
     );
