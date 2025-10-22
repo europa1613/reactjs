@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles.css";
 
 export default function MovieCard({ movie }) {
-  const handleImageError = (e) => {
-    e.target.src = "/images/default.jpg";
-  };
-
+  const handleImageError = (e) => (e.target.src = "/images/default.jpg");
   const getRatingColor = (rating) => {
     let color = "rating-bad";
     if (rating >= 8) color = "rating-good";
